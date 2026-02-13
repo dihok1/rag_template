@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    image: rag-template-bot
+    container_name: rag-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data/index:/app/data/index
+      - ./kb:/app/kb:ro
+    environment:
+      - KNOWLEDGE_BASE_PATH=/app/kb
+    command: python -m app.main

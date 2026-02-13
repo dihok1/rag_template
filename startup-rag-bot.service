@@ -1,0 +1,16 @@
+[Unit]
+Description=Telegram RAG Bot (Startup Stories)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/telegram-rag-bot
+EnvironmentFile=/root/telegram-rag-bot/.env
+Environment=INDEX_PATH=/root/telegram-rag-bot/data/index
+ExecStart=/root/telegram-rag-bot/venv/bin/python -m app.main
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
